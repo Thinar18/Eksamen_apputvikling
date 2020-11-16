@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="styling.css">
+    <title>User create</title>
+</head>
+<body>
+
+    <h2>Create Your Account</h2>
+
+
+   <form id="theForm">
+
+    <label for="inpEmail">Email: </label>
+    <input name="email" id="inpEmail" type="email" value="heihei@dabb.no"/>
+
+    <label for="inpPsw">Password: </label>
+    <input name="psw" id="inpPsw" type="password" value="12345"/>
+
+    <label for="inpAvatar">Avatar: </label>
+    <input name="avatar" id="inpAvatar" type="file" accept="image/*"/>
+
+    <input type="submit" value="Create account"/>
+
+   </form>
+
+   <p id="outtext"></p>
+    
+
+</body>
+
+<script>
+
+let url = "https://jn-messageboard.herokuapp.com/users/";
+
+let theForm = document.getElementById('theForm');
+let outtext = document.getElementById('outtext');
+
+
+    theForm.addEventListener('submit', async function(evt) {
+
+        evt.preventDefault();
+        
+        let updata = new FormData(theForm);
+        
+        let cfg = {
+            method: "POST",
+            body: updata
+        }
+
+        try {
+
+            let response = await fetch(url, cfg);
+            let data = await response.json();
+
+            if(response.status != 200) {
+                if (data.err == "FILE00") {
+                    outtext.innerHTML = "The image file is too large";
+                }
+                else if (data.details.code == "23505") {
+                    outtext.innerHTML = "The user already exists";
+                }
+                else {
+                    outtext.innerHTML = "Something went wrong";
+                }
+
+            }
+
+            console.log(data);
+        }
+        catch(err) {
+            outtext.innerHTML = "Something went wrong";
+        }
+
+    });
+
+   
+
+
+</script>
+
+
+</html>

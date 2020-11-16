@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="style.css" type="text/css"> 
+    
+
+<title>Lists</title>
+
+</head>
+
+<body>
+
+    <h1>Lists</h1>
+    <div id="container"></div>
+
+
+</body>
+
+<script>
+
+    // ---------------------------------------    
+    
+    let container = document.getElementById("container");
+    let url = "http://localhost:3000/lists";
+
+    loadLists();
+
+    //-----------------------------------------
+
+    async function loadLists() {
+        let response = await fetch(url);
+        let data = await response.json();
+
+        for(let list of data) {
+            let div = document.createElement("div");
+            let html = `
+                <h3>${list.list_name}</h3>
+                <p>${list.comm}</p>   
+                <hr>         
+            `; // Her kan man skrive inn tekst
+            div.innerHTML = html;
+            container.appendChild(div);
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+
+
+
+body {
+    background-color: rgb(177, 224, 230);
+    max-width: 1350px;
+    text-align: center;
+   
+  }
+  
+  h1 {
+    color: rgb(0, 0, 0);
+    
+  }
+  p {
+    color: rgb(5, 2, 2);
+
+  }
+
+  * {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    
+
+  }
+ 
+  
+    
+  button {
+    background-color: #e8f0e8; 
+    border: 1 px;
+    color: rgb(95, 95, 95);
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    
+
+   }
+
+    button:hover {
+    background-color: #a3a3a3; /* Green */
+    color: rgb(0, 0, 0);
+    }
+ 
+
+ 
+
+  <div> </div>
