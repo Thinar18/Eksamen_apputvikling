@@ -4,24 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css" />
     <title>Create list</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
 <body>
 
     <h1>Create list</h1>
    
-    <label for="inpName">Title:</label> <br/>
+    <label for="inpName">Title:</label>
     <input id="inpName" type="text">
     <br>
     <br>
-    <label for="inpComm">Comment:</label><br/>
+    <label for="inpComm">Comment:</label>
     <input id="inpComm" type="text">
     <br>
     <br>
-    <label for="chkPubl">Public:</label>
-    <input id="chkPubl" type="checkbox">
+
+    
+
+    <table>
+        <tr>
+          <td>
+            <label class="chkPubl">Public list?
+                <br>
+                <br>
+                <input id="chkPubl" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+          </td>
+        </tr>
+      </table>
+
     <br>
     <br>
     <button id="btnSend">Create new list</button>

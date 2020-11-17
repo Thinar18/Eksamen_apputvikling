@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="style.css" type="text/css" />
     <title>User login</title>
 </head>
 <body>
 
-    <h2>Login to your account</h2>
-
-
-   <form id="theForm">
+    <h1>Login to your account</h1>
 
     <label for="inpEmail">Email: </label>
     <input id="inpEmail" type="email" value="olivia.stole@dabb.no"/>
-
+    <br>
     <label for="inpPsw">Password: </label>
     <input id="inpPsw" type="password" value="12345"/>
-
-    <input type="submit" value="Login"/>
-
-   </form>
+    <br>
+    <button id="btnLogin">Login</button>
+    <button id="btnCreate">Create user</button>
 
    <p id="outtext"></p>
     
@@ -30,17 +26,20 @@
 
 <script>
 
-let url = "https://jn-messageboard.herokuapp.com/users/auth";
+let url = "http://localhost:3000/user";
 
-let theForm = document.getElementById('theForm');
 let outtext = document.getElementById('outtext');
 let inpEmail = document.getElementById("inpEmail");
 let inpPsw = document.getElementById("inpPsw");
+let btnLogin = document.getElementById("btnLogin");
+let btnCreate = document.getElementById("btnCreate");
 
 
-    theForm.addEventListener('submit', async function(evt) {
+    btnLogin.addEventListener("click", userLogin);
 
-        evt.preventDefault();
+    // User login
+
+    async function userLogin() {
         
         let updata = {
             email: inpEmail.value,
@@ -59,16 +58,25 @@ let inpPsw = document.getElementById("inpPsw");
             let data = await response.json();
             
             localStorage.setItem("logindata", JSON.stringify(data));
-            location.href = "msg_list.html";
+            location.href = "list_delete.html";
 
         }
         catch(err) {
             outtext.innerHTML = "Something went wrong";
         }
 
-    });
+    };
 
+    // User create
    
+    btnCreate.addEventListener("click", userCreate);
+
+    async function userCreate() {
+        
+        location.href = "user_create.html";
+        
+    }
+
 
 
 </script>
