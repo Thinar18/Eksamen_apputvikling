@@ -5,14 +5,12 @@ const app = express(); //server-app
 
 // middleware ------------------------------------
 app.use(express.json()); //for extracting json in the request-body
-app.use('/', express.static('client')); //for serving client files
+app.use('/', express.static('client'));
+app.use(express.static(__dirname + 'eksamen_apputvikling')); //for serving css files
 
-app.use(express.static(__dirname + '/public'));
+// css -----------------------------------------------
 
 
-
-
-// -----------------------------------------------
 
 // LISTS
 
@@ -81,9 +79,37 @@ app.delete('/list_item', async function (req, res) {
 });
 
 
+// Create user
+// endpoint POST ---------------------------------
+app.post('/users', async function (req, res) {
+
+    let user_name = req.body.user_name;
+    let password = req.body.password;
+
+    let result = await dbhandler.createUser(user_name, password);
+
+    res.status(200).json({msg: "You have created a new user"}); //send response    
+
+});
+
+app.get('/users', async function (req, res) {
+    let allUsers = await dbhandler.getUsers();
+    res.status(200).json(allUsers); // sender brukere til nettsiden
+});
+
+
+// endpoint DELETE ----------------------------------
+app.delete('/users', async function (req, res) {
+    let id = req.body.id;
+    let result = await dbhandler.deleteUser(id);
+    res.status(200).json({msg: "You have deleted the user"}); 
+
+});
 
 // start server -----------------------------------
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log('Server listening on port 3000!');
 });
+
+
